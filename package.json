@@ -1,0 +1,19 @@
+{
+  "name": "software-development-governor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sprint": "npx tsx src/run-sprint.ts",
+    "clean": "npx tsx src/clean.ts"
+  },
+  "dependencies": {
+    "ai-governor": "file:../ai-governor"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.10"
+  }
+}
