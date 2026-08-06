@@ -1,15 +1,39 @@
-# Software Development Governor — Constitution
+# Engineering Governor — Constitution
 
 > Immutable engineering principles governing the development of software.
 >
-> SDG is a domain-specific constitution executed within the AI Governor kernel.
-> AI Governor provides lifecycle, evidence, validation, decision, execution, and
-> traceability. SDG supplies only the domain semantics that define sound
-> software engineering.
+> The Engineering Governor is a domain-specific constitution executed within
+> the AI Governor kernel. AI Governor provides lifecycle, evidence, validation,
+> decision, execution, and traceability. The Engineering Governor supplies only
+> the domain semantics that define sound software engineering.
 >
-> **Status:** Adopted — Sprint 0
+> **Prerequisite:** No engineering work may begin without an approved Experience
+> Architecture. See `experience/EXPERIENCE_ARCHITECTURE.md`.
+>
+> **Status:** Sprint 1 — Renamed from Software Development Governor
 > **Governance:** Amendment requires the same change-control process as
 > AI Governor's own constitution.
+
+---
+
+### E-001 — Experience Prerequisite
+
+No engineering work shall begin without an approved Experience Architecture.
+
+The Experience Architecture must be reviewed and approved by the Experience
+Governor before any requirement analysis, technical design, or implementation
+may proceed. A request for engineering that does not carry an approved
+Experience Architecture status shall be:
+
+```
+DENY
+Reason:
+Experience Architecture not approved.
+```
+
+This is the single coupling between the Experience Governor and the Engineering
+Governor. The Engineering Governor does not validate experience quality — it
+only verifies that experience approval exists.
 
 ---
 
@@ -144,6 +168,7 @@ dependencies are defects.
 | Date | Amendment | Rationale |
 |---|---|---|
 | — | Initial adoption — Sprint 0 | — |
+| — | Renamed to Engineering Governor + added E-001 | Sprint 1 — Experience Architecture prerequisite |
 
-*This constitution is executed by the AI Governor kernel. No SDG component
-shall violate a constitutional principle regardless of operational pressure.*
+*This constitution is executed by the AI Governor kernel. No Engineering Governor
+component shall violate a constitutional principle regardless of operational pressure.*

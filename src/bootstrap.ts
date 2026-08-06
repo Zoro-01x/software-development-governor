@@ -7,7 +7,7 @@ import { PlanApprover } from "./components/plan-approver.js";
 import { CodeGenerator } from "./components/code-generator.js";
 import { Verifier } from "./components/verifier.js";
 
-export function createSdgPipeline(): Kernel {
+export function createEngineeringPipeline(): Kernel {
   const kernel = new Kernel({
     phaseTimeoutMs: 60000,
     collectReports: true,
@@ -40,7 +40,7 @@ export function createSdgPipeline(): Kernel {
     validate: (execResult: unknown) => verifier.validate(execResult as any),
   });
 
-  const sdgPhases: PhaseDefinition[] = [
+  const engineeringPhases: PhaseDefinition[] = [
     {
       label: "analyze-requirement",
       fromState: LifecycleState.RECEIVING,
@@ -83,7 +83,7 @@ export function createSdgPipeline(): Kernel {
     },
   ];
 
-  kernel.setPhases(sdgPhases);
+  kernel.setPhases(engineeringPhases);
 
   return kernel;
 }

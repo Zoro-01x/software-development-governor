@@ -1,11 +1,20 @@
 {
   "name": "software-development-governor",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "sprint": "npx tsx src/run-sprint.ts",
-    "clean": "npx tsx src/clean.ts"
+    "test": "vitest run tests/ --reporter verbose",
+    "test:watch": "vitest watch tests/",
+    "test:contract": "vitest run tests/contract.test.ts --reporter verbose",
+    "test:pipeline": "vitest run tests/governance-pipeline.test.ts --reporter verbose",
+    "test:determinism": "vitest run tests/determinism.test.ts --reporter verbose",
+    "test:traceability": "vitest run tests/traceability.test.ts --reporter verbose",
+    "test:e2e": "vitest run tests/end-to-end.test.ts --reporter verbose",
+    "test:validation": "vitest run tests/validation/ --reporter verbose",
+    "clean": "npx tsx scripts/clean.ts",
+    "demo": "npx tsx examples/demo.ts",
+    "sprint": "npx tsx scripts/run-sprint.ts"
   },
   "dependencies": {
     "ai-governor": "file:../ai-governor"

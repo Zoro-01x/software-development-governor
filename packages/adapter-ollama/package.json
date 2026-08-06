@@ -1,0 +1,48 @@
+{
+  "name": "@framework/adapter-ollama",
+  "version": "1.0.0",
+  "description": "Ollama local reasoning provider adapter for the Governance Framework",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "governance",
+    "framework",
+    "ai",
+    "llm",
+    "ollama",
+    "local",
+    "adapter"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zoro-01x/software-development-governor.git",
+    "directory": "packages/adapter-ollama"
+  },
+  "homepage": "https://github.com/Zoro-01x/software-development-governor#readme",
+  "bugs": {
+    "url": "https://github.com/Zoro-01x/software-development-governor/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@framework/core": "file:../core"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.10"
+  },
+  "peerDependencies": {
+    "ollama": "^0.5.0"
+  }
+}

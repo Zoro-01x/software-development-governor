@@ -1,0 +1,17 @@
+# Default reviewers for the entire repo
+* @governance-framework/maintainers
+
+# Core package
+packages/core/ @governance-framework/maintainers
+
+# Adapters
+packages/adapter-*/ @governance-framework/maintainers
+
+# Memory backends
+packages/memory-*/ @governance-framework/maintainers
+
+# Bridge
+packages/bridge-opencode/ @governance-framework/maintainers
+
+# CI/CD
+.github/ @governance-framework/maintainers

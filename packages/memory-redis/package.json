@@ -1,0 +1,47 @@
+{
+  "name": "@framework/memory-redis",
+  "version": "1.0.0",
+  "description": "Redis memory backend for the Governance Framework",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "governance",
+    "framework",
+    "ai",
+    "llm",
+    "memory",
+    "redis"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zoro-01x/software-development-governor.git",
+    "directory": "packages/memory-redis"
+  },
+  "homepage": "https://github.com/Zoro-01x/software-development-governor#readme",
+  "bugs": {
+    "url": "https://github.com/Zoro-01x/software-development-governor/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@framework/core": "file:../core"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.10"
+  },
+  "peerDependencies": {
+    "ioredis": "^5.0.0"
+  }
+}

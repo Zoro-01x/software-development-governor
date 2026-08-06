@@ -1,0 +1,127 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run tests
+        run: npm test
+        
+      - name: Run validation tests
+        run: npx vitest run tests/validation/ --reporter verbose
+
+  architecture:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Check TypeScript compilation
+        run: npx tsc --noEmit
+        
+      - name: Check for forbidden imports
+        run: |
+          # Framework must not import adapters
+          ! grep -r "from.*adapters/" src/ --include="*.ts" | grep -v "src/adapters/"
+          
+      - name: Check for deprecated files
+        run: |
+          # Deprecated files must not exist
+          ! test -f src/llm-prompt.ts
+          ! test -f src/llm-response-parser.ts
+          ! test -f src/components/chat-reasoning.ts
+          ! test -f src/components/http-reasoning.ts
+
+  governance:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run constitution tests
+        run: npx vitest run tests/constitution/ --reporter verbose
+        
+      - name: Run governance pipeline tests
+        run: npx vitest run tests/governance-pipeline.test.ts --reporter verbose
+
+  security:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run security audit
+        run: npm audit --audit-level=high
+        
+      - name: Check for secrets
+        run: |
+          ! grep -r "API_KEY\|SECRET\|PASSWORD" src/ --include="*.ts"
+
+  release:
+    needs: [test, architecture, governance, security]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run all tests
+        run: npm test
+        
+      - name: Build
+        run: npm run build
+        
+      - name: Publish
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

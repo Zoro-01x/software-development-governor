@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: "Governance Framework"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - name: "Governance Framework Contributors"
+repository-code: "https://github.com/Zoro-01x/software-development-governor"
+license: MIT
+version: "1.0.0"
+date-released: "2026-08-05"
+keywords:
+  - governance
+  - framework
+  - ai
+  - llm
+  - provider-agnostic
+  - reasoning
+  - audit-trail
+  - multi-agent
